@@ -1,5 +1,5 @@
 #include <memory>
-#include <map>
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -17,14 +17,16 @@ class Department;
 class Student
 {
     public:
-    Student(const std::string &n);
-    // : name(n), id(max_id++) {}
+    Student(const std::string &n) : name(n), id(max_id++) {}
 
-    ~Student();
+    ~Student()
+    {
+        cout << "Student " << name << " destroyed." << endl;
+    }
 
     
 
-    int getId() const;
+    int getId() {return id;}
 
     private:
     // Static variable means same value shared by every object in class
@@ -35,23 +37,19 @@ class Student
     string name;
     int id;
     // add a pointer to the department here
-    weak_ptr<Department> department;
 };
 
 class Department
 {
     public:
-    Department(const std::string &n);
-    // : name(n) {}
+    Department(const std::string &n) : name(n) {}
 
-    ~Department();
-
-    void deregisterStudent(const int id);
-
-    void addStudent(const shared_ptr<Student> new_student);
+    ~Department()
+    {
+        cout << "Department " << name << " destroyed." << endl;
+    }
 
     private:
     string name;
     // add a vector or map of pointers to students here
-    map<int, weak_ptr<Student>> students;
 };

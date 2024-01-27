@@ -16,17 +16,20 @@ double IntegrateMonteCarlo3D(int n_points, double min, double max)
     double VolCube = std::pow((max - min), 3);
 
     //set up random number generator here
+    std::mt19937 rng_mt;
+    std::uniform_real_distribution<double> distribution(-1.0,1.0);
 
     for(int i = 0; i < n_points; i++)
     {
         //generate random points here
-        double x = 
-        double y =
-        double z = 
+        double x = distribution(rng_mt);
+        double y = distribution(rng_mt);
+        double z = distribution(rng_mt);
         if(InsideUnitSphere(x, y, z)) count++;
     }
 
     return static_cast<double>(count) / n_points * VolCube;
+    // (double)(count) also works?
 }
 
 

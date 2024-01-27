@@ -25,6 +25,13 @@ class Reporter
 
 int main()
 {
+
+    // raw pointer
+    Reporter *rawptr = new Reporter("Raw");
+
+    // unique pointer
+    std::unique_ptr<Reporter> smart_ptr = 
+        std::make_unique<Reporter>("Unique");
     
     return 0;
 }
